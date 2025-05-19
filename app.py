@@ -8,6 +8,25 @@ A peer-to-peer deal goes wrong — until code steps in.
 This is an interactive simulation of a smart contract solving a trust problem in everyday life.
 """)
 
+# --- Story Intro ---
+st.header("🎭 Meet the Story")
+
+with st.expander("📖 Click to reveal the short story"):
+    st.markdown("""
+    Dana saw a beautiful vintage bag listed online by Layla. They agreed on a price of **60 JD** and a pickup deadline by **Friday at 6 PM**. 
+    
+    Layla said: "I'll hold it for you."
+    Dana replied: "Perfect! I'll come Friday."
+    
+    But when Friday came... someone else had offered a higher price.
+    
+    Layla sold it.
+
+    Dana was left betrayed.
+
+    Let’s simulate how a smart contract would’ve saved this deal.
+    """)
+
 # --- Step 1: Confirm the Deal ---
 st.header("📍 Step 1: Agreement Initiated")
 
@@ -50,7 +69,7 @@ if all([
 ]):
     st.markdown("---")
     st.header("💳 Step 2: Funds Deposited")
-    
+
     if "dana_deposited" not in st.session_state:
         st.session_state.dana_deposited = False
     if "layla_signed" not in st.session_state:
@@ -59,11 +78,21 @@ if all([
     if not st.session_state.dana_deposited:
         if st.button("💸 Dana Deposits 30 JD"):
             st.session_state.dana_deposited = True
-            st.success("✔️ Funds locked in a neutral smart contract. Not with the seller.")
+            st.markdown("""
+            👜 Dana → 🧍‍♀️ 💸 → **[Smart Contract Wallet]** 💼 (Escrow)
+
+            🪙 The 30 JD is now **locked in the contract**, not with Layla.
+            """)
+            st.success("✔️ Funds locked in a neutral smart contract.")
             st.info("🔐 Escrow initiated. Dana's money is safe.")
     elif not st.session_state.layla_signed:
         if st.button("🖊️ Layla Signs the Digital Contract"):
             st.session_state.layla_signed = True
+            st.markdown("""
+            ✍️ Layla clicks **Sign Deal**
+
+            🔏 The contract is now enforceable.
+            """)
             st.success("✔️ Layla is now legally committed to the deal.")
             st.info("📜 All conditions locked. The contract is ready to execute.")
 
@@ -83,5 +112,5 @@ if st.session_state.get("dana_deposited") and st.session_state.get("layla_signed
 
 # --- Footer ---
 st.markdown("---")
-st.caption("Built with ❤️ using Streamlit · Smart Contract Simulation by [Your Name]")
+st.caption("Built with ❤️ using Streamlit · Smart Contract Simulation by dana")
 
