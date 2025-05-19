@@ -7,9 +7,9 @@ st.write("A smart contract solution to prevent broken deals in online selling.")
 
 # --- Characters Section ---
 st.header("🎭 Meet the Characters")
-st.image("dana.png", caption="Dana - The Buyer")
-st.image("layla.png", caption="Layla - The Seller")
-st.image("lana.png", caption="Lana - The Higher Bidder")
+st.image("1", caption="Dana wants to buy the bag")
+st.image("2", caption="Layla found someone whor offers a higher price)
+st.image("3", caption="dana is dissapointed")
 
 # --- Confirmations ---
 st.header("✅ Confirm the Deal")
