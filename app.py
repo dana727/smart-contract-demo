@@ -29,7 +29,7 @@ with st.expander("📖 Click to reveal the short story"):
     st.header("🎭 The Story")
 
 # --- Story Intro with Images ---
-st.header("🎭 The Story (Visual)")
+st.header("🎭 Heres What Happened...")
 
 col1, col2 = st.columns(2)
 with col1:
