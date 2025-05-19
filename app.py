@@ -121,7 +121,7 @@ if st.session_state.get("dana_deposited") and st.session_state.get("layla_signed
 
     if choice == "✅ Delivered on time":
         st.success("🎉 Item received. Smart contract releases funds to Layla.")
-        st.balloons()
+        
     else:
         st.error("💥 Deadline missed. Smart contract refunds Dana automatically.")
         st.warning("🔁 Fairness enforced. Trustless transaction complete.")
