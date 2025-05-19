@@ -129,7 +129,7 @@ if st.session_state.get("dana_deposited") and st.session_state.get("layla_signed
 
 # --- Benefits Summary ---
 st.markdown("---")
-st.header("🔎 What Did the Smart Contract Prevent?")
+st.header("🔎 Why Did We Need the Smart Contract?")
 
 st.markdown("""
 - 🔒 **Funds Held in Escrow:** Buyer’s money isn’t released until terms are met.  
