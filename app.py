@@ -9,7 +9,7 @@ This is an interactive simulation of a smart contract solving a trust problem in
 """)
 
 # --- Story Intro ---
-st.header("🎭 Meet the Story")
+st.header("🎭 The Story")
 
 with st.expander("📖 Click to reveal the short story"):
     st.markdown("""
@@ -26,22 +26,6 @@ with st.expander("📖 Click to reveal the short story"):
 
     Let’s simulate how a smart contract would’ve saved this deal.
     """)
-    
-st.markdown("#### This is what happened before the smart contract…")
-
-col1, col2 = st.columns(2)
-with col1:
-    st.image("story_1.png.png", caption="Dana contacts Layla to buy the bag")
-with col2:
-    st.image("story_2.png.png", caption="Lana offers more money. Layla takes it.")
-
-col3, col4 = st.columns(2)
-with col3:
-    st.image("story_3.png.png", caption="Dana is left disappointed and empty-handed.")
-with col4:
-    st.image("story_4.png.png", caption="She gets an idea... A smart contract.")
-
-st.markdown("---")
 
 # --- Step 1: Confirm the Deal ---
 st.header("📍 Step 1: Agreement Initiated")
@@ -90,10 +74,12 @@ if all([
         st.session_state.dana_deposited = False
     if "escrow_displayed" not in st.session_state:
         st.session_state.escrow_displayed = False
+    if "layla_collateral" not in st.session_state:
+        st.session_state.layla_collateral = False
     if "layla_signed" not in st.session_state:
         st.session_state.layla_signed = False
 
-    # Phase 1 – Dana deposits
+    # Dana deposits
     if not st.session_state.dana_deposited:
         if st.button("💸 Dana Deposits 30 JD"):
             st.session_state.dana_deposited = True
@@ -101,7 +87,7 @@ if all([
     if st.session_state.dana_deposited:
         st.success("✔️ Dana deposited 30 JD into the smart contract.")
 
-    # Phase 2 – Escrow animation
+    # Show escrow
     if st.session_state.dana_deposited and not st.session_state.escrow_displayed:
         if st.button("🔐 Show Escrow Wallet"):
             st.session_state.escrow_displayed = True
@@ -110,15 +96,23 @@ if all([
         st.markdown("💸 ➡️ 🔒 **30 JD is now locked in escrow** (not with Layla).")
         st.info("Funds are safely held in the smart contract.")
 
-    # Phase 3 – Layla signs
-    if st.session_state.escrow_displayed and not st.session_state.layla_signed:
+    # Layla collateral
+    if st.session_state.escrow_displayed and not st.session_state.layla_collateral:
+        if st.button("💼 Layla Adds 5 JD Collateral"):
+            st.session_state.layla_collateral = True
+
+    if st.session_state.layla_collateral:
+        st.success("✔️ Layla's 5 JD collateral is also locked in the smart contract.")
+        st.warning("This will be sent to Dana if Layla fails to deliver.")
+
+    # Layla signs
+    if st.session_state.layla_collateral and not st.session_state.layla_signed:
         if st.button("🖊️ Layla Signs the Digital Contract"):
             st.session_state.layla_signed = True
 
     if st.session_state.layla_signed:
         st.success("✔️ Layla is now legally committed to the deal.")
         st.info("📜 All conditions are now locked. Ready for execution.")
-
 
 # --- Step 3: Delivery or Refund ---
 if st.session_state.get("dana_deposited") and st.session_state.get("layla_signed"):
@@ -128,13 +122,38 @@ if st.session_state.get("dana_deposited") and st.session_state.get("layla_signed
     choice = st.radio("Layla's action:", ["✅ Delivered on time", "❌ Ghosted Dana"])
 
     if choice == "✅ Delivered on time":
-        st.success("🎉 Item received. Smart contract releases funds to Layla.")
-        
+        st.success("🎉 Item received. Smart contract releases 30 JD to Layla and returns her 5 JD collateral.")
     else:
-        st.error("💥 Deadline missed. Smart contract refunds Dana automatically.")
-        st.warning("🔁 Fairness enforced. Trustless transaction complete.")
+        st.error("💥 Deadline missed. Smart contract refunds Dana's 30 JD **and** transfers Layla's 5 JD collateral to Dana.")
+        st.warning("🔁 Trustless fairness enforced by code.")
+
+# --- Benefits Summary ---
+st.markdown("---")
+st.header("🔎 What Did the Smart Contract Prevent?")
+
+st.markdown("""
+This simple smart contract protected both parties from common risks in peer-to-peer deals:
+
+- ❌ **No Ghosting:** If the seller didn’t deliver, Dana got refunded automatically.
+- ❌ **No Broken Promises:** Layla couldn’t take a higher offer once she signed.
+- ❌ **No Manual Disputes:** The contract enforced deadlines and rules without needing human intervention.
+
+""")
+
+st.markdown("### ✅ Why It Works")
+
+st.markdown("""
+- 🔒 **Funds Held in Escrow:** Buyer’s money isn’t released until terms are met.  
+- 💼 **Seller Collateral:** Layla must risk 5 JD if she flakes.  
+- ✍️ **Digital Commitment:** Seller locks the deal by signing the contract.  
+- ⏱️ **Time-Based Logic:** If the deadline passes, the contract executes automatically.  
+- ⚖️ **Trustless & Fair:** Both sides are protected by code — not just hope.
+
+Smart contracts enforce trust, even when people fail to.
+""")
 
 # --- Footer ---
 st.markdown("---")
-st.caption("Built with ❤️ using Streamlit · Smart Contract Simulation by dana")
+st.caption("made with love , student: dana<3")
+
 
