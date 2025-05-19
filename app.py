@@ -33,15 +33,15 @@ st.header("🎭 The Story (Visual)")
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image("story_1.png", caption="Dana makes a deal with Layla")
+    st.image("story_1.png.png", caption="Dana makes a deal with Layla")
 with col2:
-    st.image("story_2.png", caption="Lana offers more. Layla breaks her promise.")
+    st.image("story_2.png.png", caption="Lana offers more. Layla breaks her promise.")
 
 col3, col4 = st.columns(2)
 with col3:
-    st.image("story_3.png", caption="Dana is left disappointed.")
+    st.image("story_3.png.png", caption="Dana is left disappointed.")
 with col4:
-    st.image("story_4.png", caption="She gets an idea... a smart contract.")
+    st.image("story_4.png.png", caption="She gets an idea... a smart contract.")
 
 
 
