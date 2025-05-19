@@ -26,6 +26,22 @@ with st.expander("📖 Click to reveal the short story"):
 
     Let’s simulate how a smart contract would’ve saved this deal.
     """)
+    
+st.markdown("#### This is what happened before the smart contract…")
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image("story_1.png", caption="Dana contacts Layla to buy the bag")
+with col2:
+    st.image("story_2.png", caption="Lana offers more money. Layla takes it.")
+
+col3, col4 = st.columns(2)
+with col3:
+    st.image("story_3.png", caption="Dana is left disappointed and empty-handed.")
+with col4:
+    st.image("story_4.png", caption="She gets an idea... A smart contract.")
+
+st.markdown("---")
 
 # --- Step 1: Confirm the Deal ---
 st.header("📍 Step 1: Agreement Initiated")
