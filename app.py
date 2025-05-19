@@ -88,29 +88,27 @@ if all([
 
     if "dana_deposited" not in st.session_state:
         st.session_state.dana_deposited = False
+    if "escrow_displayed" not in st.session_state:
+        st.session_state.escrow_displayed = False
     if "layla_signed" not in st.session_state:
         st.session_state.layla_signed = False
 
     if not st.session_state.dana_deposited:
         if st.button("💸 Dana Deposits 30 JD"):
             st.session_state.dana_deposited = True
-            st.markdown("""
-            👜 Dana → 🧍‍♀️ 💸 → **[Smart Contract Wallet]** 💼 (Escrow)
-
-            🪙 The 30 JD is now **locked in the contract**, not with Layla.
-            """)
-            st.success("✔️ Funds locked in a neutral smart contract.")
-            st.info("🔐 Escrow initiated. Dana's money is safe.")
+            st.success("✔️ Dana deposited 30 JD.")
+    
+    elif not st.session_state.escrow_displayed:
+        if st.button("🔐 Show Escrow Wallet"):
+            st.session_state.escrow_displayed = True
+            st.markdown("💸 ➡️ 🔒 **30 JD is now locked in escrow** (not with Layla).")
+            st.info("Funds are safe in the smart contract.")
+    
     elif not st.session_state.layla_signed:
         if st.button("🖊️ Layla Signs the Digital Contract"):
             st.session_state.layla_signed = True
-            st.markdown("""
-            ✍️ Layla clicks **Sign Deal**
-
-            🔏 The contract is now enforceable.
-            """)
             st.success("✔️ Layla is now legally committed to the deal.")
-            st.info("📜 All conditions locked. The contract is ready to execute.")
+            st.info("📜 All terms are locked. Ready for execution.")
 
 # --- Step 3: Delivery or Refund ---
 if st.session_state.get("dana_deposited") and st.session_state.get("layla_signed"):
