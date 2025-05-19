@@ -132,17 +132,6 @@ st.markdown("---")
 st.header("🔎 What Did the Smart Contract Prevent?")
 
 st.markdown("""
-This simple smart contract protected both parties from common risks in peer-to-peer deals:
-
-- ❌ **No Ghosting:** If the seller didn’t deliver, Dana got refunded automatically.
-- ❌ **No Broken Promises:** Layla couldn’t take a higher offer once she signed.
-- ❌ **No Manual Disputes:** The contract enforced deadlines and rules without needing human intervention.
-
-""")
-
-st.markdown("### ✅ Why It Works")
-
-st.markdown("""
 - 🔒 **Funds Held in Escrow:** Buyer’s money isn’t released until terms are met.  
 - 💼 **Seller Collateral:** Layla must risk 5 JD if she flakes.  
 - ✍️ **Digital Commitment:** Seller locks the deal by signing the contract.  
