@@ -3,57 +3,36 @@ import streamlit as st
 st.set_page_config(page_title="Smart Contract Demo", layout="centered")
 
 st.title("👜 The Bag That Was Promised")
-st.write("A smart contract solution to prevent broken deals in online selling.")
+st.markdown("""
+A peer-to-peer deal goes wrong — until code steps in. 
+This is an interactive simulation of a smart contract solving a trust problem in everyday life.
+""")
 
-# --- Characters Section ---
-st.header("🎭 Meet the Characters")
-st.image("1", caption="Dana wants to buy the bag")
-st.image("2", caption="Layla found someone whor offers a higher price)
-st.image("3", caption="dana is dissapointed")
+# --- Step 1: The Agreement ---
+st.header("📜 Step 1: The Verbal Deal")
+st.write("Dana agrees to buy a vintage bag from Layla for 60 JD. Layla promises to hold it until Friday.")
+if st.button("🤝 I Accept the Verbal Deal"):
+    st.session_state.accepted = True
 
-# --- Confirmations ---
-st.header("✅ Confirm the Deal")
+# --- Step 2: Smart Contract Activation ---
+if st.session_state.get("accepted"):
+    st.header("🔐 Step 2: Smart Contract Activated")
+    st.write("Dana deposits the money into a smart contract. Layla signs the digital agreement.")
 
-if "item_confirmed" not in st.session_state:
-    st.session_state.item_confirmed = False
-if "price_confirmed" not in st.session_state:
-    st.session_state.price_confirmed = False
-if "deadline_confirmed" not in st.session_state:
-    st.session_state.deadline_confirmed = False
+    st.progress(100)
+    st.success("The deal is now locked. Both parties are committed.")
 
-if not st.session_state.item_confirmed:
-    if st.button("👜 Confirm Item"):
-        st.session_state.item_confirmed = True
-else:
-    st.success("Item Confirmed ✅")
-
-if not st.session_state.price_confirmed:
-    if st.button("💰 Confirm Price"):
-        st.session_state.price_confirmed = True
-else:
-    st.success("Price Confirmed 💵")
-
-if not st.session_state.deadline_confirmed:
-    if st.button("🕒 Confirm Deadline"):
-        st.session_state.deadline_confirmed = True
-else:
-    st.success("Deadline Confirmed ⏳")
-
-# --- Smart Contract Trigger ---
-if all([
-    st.session_state.item_confirmed,
-    st.session_state.price_confirmed,
-    st.session_state.deadline_confirmed
-]):
     st.markdown("---")
-    st.header("🔄 Smart Contract Execution")
-    st.write("All terms are confirmed. The smart contract is now active.")
-    option = st.radio("What did Layla do?", ["✅ Delivered the item", "❌ Ghosted Dana"])
-    if option == "✅ Delivered the item":
-        st.success("✔️ Funds released to Layla!")
-        st.balloons()
-    else:
-        st.error("✖️ Deadline missed. Dana gets a full refund.")
+    st.header("🚚 Step 3: Did Layla Deliver the Item?")
+    action = st.radio("Choose what Layla did:", ["✅ Delivered the bag", "❌ Flaked and sold it to someone else"])
 
+    if action == "✅ Delivered the bag":
+        st.balloons()
+        st.success("Funds released to Layla. Dana received the item. The contract executed successfully.")
+    else:
+        st.error("Dana didn’t receive the item. Contract auto-refunds the money. Layla gets nothing.")
+        st.info("✅ Trust enforced without trust. The contract handled everything.")
+
+# --- Footer ---
 st.markdown("---")
-st.caption("Built with ❤️ using Streamlit · Project by dana")
+st.caption("Built with ❤️ using Streamlit · Smart Contract Simulation by dana")
