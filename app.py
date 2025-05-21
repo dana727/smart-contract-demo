@@ -13,7 +13,7 @@ st.header("🎭 The Story")
 
 with st.expander("📖 Click to reveal the short story"):
     st.markdown("""
-    Dana saw a beautiful vintage bag listed online by Layla. They agreed on a price of **60 JD** and a pickup deadline by **Friday at 6 PM**. 
+    Dana saw a beautiful vintage bag listed online by Layla. They agreed on a price of **30 JD** and a pickup deadline by **Friday at 6 PM**. 
     
     Layla said: "I'll hold it for you."
     Dana replied: "Perfect! I'll come Friday."
